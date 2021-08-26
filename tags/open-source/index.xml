@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>open source on Penthaa Patel</title>
+    <link>https://penthaapatel.github.io/tags/open-source/</link>
+    <description>Recent content in open source on Penthaa Patel</description>
+    <image>
+      <url>https://penthaapatel.github.io/papermod-cover.png</url>
+      <link>https://penthaapatel.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 08 Jun 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributing to Open Source Go projects on GitHub - A recipe to clone forked Go repositories</title>
+      <link>https://penthaapatel.github.io/posts/contributing-to-open-source-go-projects-on-github-a-recipe-to-clone-forked-go-repositories/</link>
+      <pubDate>Sat, 08 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/posts/contributing-to-open-source-go-projects-on-github-a-recipe-to-clone-forked-go-repositories/</guid>
+      <description>This post was originally published on my Dev.to profile : Contributing to Open Source Go projects on GitHub — A recipe to clone forked Go repos.
+Phew! It took me a while to figure out the entire process so I decided to write this post and I hope it&amp;rsquo;ll further help everyone else get started. I managed to gather all the ingredients and curate the recipe to start working on an open source Golang project…so follow along.</description>
+    </item>
+    
+  </channel>
+</rss>

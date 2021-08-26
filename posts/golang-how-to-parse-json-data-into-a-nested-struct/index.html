@@ -1,0 +1,287 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Golang-How to parse JSON data into a nested struct | Penthaa Patel</title>
+<meta name=keywords content="golang,json">
+<meta name=description content="This post was originally published on my Medium profile : Golang-How to parse JSON data into a nested struct
+Say you are fetching data from a RESTful API using GET requests and want to store the JSON responses. One of the ways to achieve this is by parsing the JSON data into a Go struct. The following example will fetch data related to standings of a football league, UEFA Champions League in this case.">
+<meta name=author content="Penthaa Patel">
+<link rel=canonical href=https://penthaapatel.github.io/posts/golang-how-to-parse-json-data-into-a-nested-struct/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.b9ff4cc257e914dab489bd18086151800e18f91456a5174bf28489210227a659.css integrity="sha256-uf9MwlfpFNq0ib0YCGFRgA4Y+RRWpRdL8oSJIQInplk=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://penthaapatel.github.io/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://penthaapatel.github.io/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://penthaapatel.github.io/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://penthaapatel.github.io/apple-touch-icon.png>
+<link rel=mask-icon href=https://penthaapatel.github.io/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.87.0">
+<meta property="og:title" content="Golang-How to parse JSON data into a nested struct">
+<meta property="og:description" content="This post was originally published on my Medium profile : Golang-How to parse JSON data into a nested struct
+Say you are fetching data from a RESTful API using GET requests and want to store the JSON responses. One of the ways to achieve this is by parsing the JSON data into a Go struct. The following example will fetch data related to standings of a football league, UEFA Champions League in this case.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://penthaapatel.github.io/posts/golang-how-to-parse-json-data-into-a-nested-struct/">
+<meta property="og:image" content="https://penthaapatel.github.io/golang-parse-json-into-nested-struct.jpeg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-05-22T00:00:00+00:00">
+<meta property="article:modified_time" content="2019-05-22T00:00:00+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://penthaapatel.github.io/golang-parse-json-into-nested-struct.jpeg">
+<meta name=twitter:title content="Golang-How to parse JSON data into a nested struct">
+<meta name=twitter:description content="This post was originally published on my Medium profile : Golang-How to parse JSON data into a nested struct
+Say you are fetching data from a RESTful API using GET requests and want to store the JSON responses. One of the ways to achieve this is by parsing the JSON data into a Go struct. The following example will fetch data related to standings of a football league, UEFA Champions League in this case.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://penthaapatel.github.io/posts/"},{"@type":"ListItem","position":2,"name":"Golang-How to parse JSON data into a nested struct","item":"https://penthaapatel.github.io/posts/golang-how-to-parse-json-data-into-a-nested-struct/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Golang-How to parse JSON data into a nested struct","name":"Golang-How to parse JSON data into a nested struct","description":"This post was originally published on my Medium profile : Golang-How to parse JSON data into a nested struct\nSay you are fetching data from a RESTful API using GET requests and want to store the JSON responses. One of the ways to achieve this is by parsing the JSON data into a Go struct. The following example will fetch data related to standings of a football league, UEFA Champions League in this case.","keywords":["golang","json"],"articleBody":"This post was originally published on my Medium profile : Golang-How to parse JSON data into a nested struct\nSay you are fetching data from a RESTful API using GET requests and want to store the JSON responses. One of the ways to achieve this is by parsing the JSON data into a Go struct. The following example will fetch data related to standings of a football league, UEFA Champions League in this case.\nRESTful API used : https://www.football-data.org/\nYou’ll need a free API key to access the data.\nConstruct a blueprint of the struct: Here’s a useful tool that converts JSON to a Go struct type. I have removed a few fields to make the struct simpler. Each field is associated with a JSON tag.\n Construct separate struct types for JSON objects that are arrays. In the following example a separate type is constructed for Standing and Table and the fields Standings is a slice of Standing i.e. []Standing and Tables is a slice of Table i.e. []Table .\n type Competitions struct { Competition struct { Name string `json:\"name\"` } `json:\"competition\"` Season struct { CurrentMatchday int `json:\"currentMatchday\"` Winner interface{} `json:\"winner\"` } `json:\"season\"` Standings []Standing `json:\"standings\"` } type Standing struct { Stage string `json:\"stage\"` Type string `json:\"type\"` Group string `json:\"group\"` Tables []Table `json:\"table\"` } type Table struct { Position int `json:\"position\"` Team struct { Name string `json:\"name\"` } `json:\"team\"` PlayedGames int `json:\"playedGames\"` Won int `json:\"won\"` Draw int `json:\"draw\"` Lost int `json:\"lost\"` Points int `json:\"points\"` GoalsFor int `json:\"goalsFor\"` GoalsAgainst int `json:\"goalsAgainst\"` GoalDifference int `json:\"goalDifference\"` } Get JSON data from the API: GetData function returns a slice of byte. It does the following tasks:\n Makes an HTTP GET request; Sets the “X-Auth-Token” in request header; Sets up an HTTP Client that makes an HTTP request and returns an HTTP response, following the auth-token as configured. Reads HTTP response body that contains JSON data and converts it to a []byte.  The []byte returned can be used to parse JSON encoded data into any struct type using [json.Unmarshal](https://golang.org/pkg/encoding/json/#Unmarshal).\nfunc GetData(url, apiKey string) []byte { request, err := http.NewRequest(\"GET\", url, nil) if err != nil { panic(err) } request.Header.Set(\"X-Auth-Token\", apiKey) var client = http.Client{} response, err := client.Do(request) if err != nil { panic(err) } defer response.Body.Close() jsonByte, err := ioutil.ReadAll(response.Body) if err != nil { panic(err) } return jsonByte } Parse JSON into the struct Parse JSON into **Competitions** struct:GetStandings function takes the league id as an argument to build the final url and returns a Competitions struct that has the parsed JSON data in it.\n [json.Unamrshal](https://golang.org/pkg/encoding/json/#Unmarshal) parses the JSON-encoded data that is in []byte and stores the result in the struct whose address is given by \u0026s .\n Note: To make successful GET requests, set the variable apikey.\nfunc GetStandings(id string) (s Competitions) { /* id can be BSA Brazilian Division One League PL Premiere League League ELC Championship League CL Champions League Cup EC European Championships Cup FL1 France League 1 League BL1 Bundesliga League SA Italy Serie A League DED Eredivise League PPL Portuguese Primera Division League PD Primera Division League WC World Cup */ url := \"https://api.football-data.org/v2/competitions/\" + id + \"/standings\" apikey := \"SetYourAPIkeyHere\" d := GetData(url, apikey) err := json.Unmarshal(d, \u0026s) if err != nil { panic(err) } //Uncomment this section to pretty print json on terminal \t/* data, err := json.MarshalIndent(s, \"\", \" \") if err != nil { panic(err) } fmt.Println(string(data)) */ return } Voila!\nPrint the struct on terminal using the format verb %+v variant that will include the struct’s field names or use package spew that prints some additional information about the struct.\nfunc main() { //id = CL for Champions League Standings \tfmt.Printf(\"%+v\", GetStandings(\"CL\")) //Or using package spew \tspew.Dump(GetStandings(\"CL\")) } ","wordCount":"616","inLanguage":"en","image":"https://penthaapatel.github.io/golang-parse-json-into-nested-struct.jpeg","datePublished":"2019-05-22T00:00:00Z","dateModified":"2019-05-22T00:00:00Z","author":{"@type":"Person","name":"Penthaa Patel"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://penthaapatel.github.io/posts/golang-how-to-parse-json-data-into-a-nested-struct/"},"publisher":{"@type":"Organization","name":"Penthaa Patel","logo":{"@type":"ImageObject","url":"https://penthaapatel.github.io/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<noscript>
+<style type=text/css>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:#1d1e20;--entry:#2e2e33;--primary:rgba(255, 255, 255, 0.84);--secondary:rgba(255, 255, 255, 0.56);--tertiary:rgba(255, 255, 255, 0.16);--content:rgba(255, 255, 255, 0.74);--hljs-bg:#2e2e33;--code-bg:#37383e;--border:#333}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://penthaapatel.github.io/ accesskey=h title="Penthaa Patel (Alt + H)">Penthaa Patel</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://penthaapatel.github.io/ title=Home>
+<span>Home</span>
+</a>
+</li>
+<li>
+<a href=https://penthaapatel.github.io/about/ title="About Me">
+<span>About Me</span>
+</a>
+</li>
+<li>
+<a href=https://penthaapatel.github.io/projects/ title=Projects>
+<span>Projects</span>
+</a>
+</li>
+<li>
+<a href=https://penthaapatel.github.io/posts/ title="All Posts">
+<span>All Posts</span>
+</a>
+</li>
+<li>
+<a href=https://penthaapatel.github.io/archives title=Archives>
+<span>Archives</span>
+</a>
+</li>
+<li>
+<a href=https://penthaapatel.github.io/search/ title="Search (Alt + /)" accesskey=/>
+<span>Search</span>
+</a>
+</li>
+<li>
+<a href=https://penthaapatel.github.io/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://penthaapatel.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://penthaapatel.github.io/posts/>Posts</a></div>
+<h1 class=post-title>
+Golang-How to parse JSON data into a nested struct
+</h1>
+<div class=post-meta>May 22, 2019&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Penthaa Patel
+</div>
+</header>
+<figure class=entry-cover><img loading=lazy src=https://penthaapatel.github.io/golang-parse-json-into-nested-struct.jpeg alt>
+</figure><div class=toc>
+<details open>
+<summary accesskey=c title="(Alt + C)">
+<div class=details>Table of Contents</div>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#construct-a-blueprint-of-the-struct aria-label="Construct a blueprint of the struct:">Construct a blueprint of the struct:</a></li>
+<li>
+<a href=#get-json-data-from-the-api aria-label="Get JSON data from the API:">Get JSON data from the API:</a></li>
+<li>
+<a href=#parse-json-into-the-struct aria-label="Parse JSON into the struct">Parse JSON into the struct</a>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><p><em>This post was originally published on my Medium profile : <a href=https://penthaa.medium.com/golang-how-to-parse-json-data-into-a-nested-struct-29be89ce2ae8>Golang-How to parse JSON data into a nested struct</a></em></p>
+<p>Say you are fetching data from a RESTful API using GET requests and want to store the JSON responses. One of the ways to achieve this is by parsing the JSON data into a Go struct. The following example will fetch data related to standings of a football league, UEFA Champions League in this case.</p>
+<p>RESTful API used : <a href=https://www.football-data.org/>https://www.football-data.org/</a><br>
+You’ll need a free API key to access the data.</p>
+<h2 id=construct-a-blueprint-of-the-struct>Construct a blueprint of the struct:<a hidden class=anchor aria-hidden=true href=#construct-a-blueprint-of-the-struct>#</a></h2>
+<p>Here’s a useful tool that converts <a href=https://mholt.github.io/json-to-go/>JSON to a Go struct type</a>. I have removed a few fields to make the struct simpler. Each field is associated with a JSON tag.</p>
+<blockquote>
+<p>Construct separate struct types for JSON objects that are arrays. In the following example a separate type is constructed for <code>Standing</code> and <code>Table</code> and the fields <code>Standings</code> is a slice of <code>Standing</code> i.e. <code>[]Standing</code> and <code>Tables</code> is a slice of <code>Table</code> i.e. <code>[]Table</code> .</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Competitions</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>Competition</span> <span style=color:#66d9ef>struct</span> {
+		<span style=color:#a6e22e>Name</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;name&#34;`</span>
+	} <span style=color:#e6db74>`json:&#34;competition&#34;`</span>
+	<span style=color:#a6e22e>Season</span> <span style=color:#66d9ef>struct</span> {
+		<span style=color:#a6e22e>CurrentMatchday</span> <span style=color:#66d9ef>int</span>         <span style=color:#e6db74>`json:&#34;currentMatchday&#34;`</span>
+		<span style=color:#a6e22e>Winner</span>          <span style=color:#66d9ef>interface</span>{} <span style=color:#e6db74>`json:&#34;winner&#34;`</span>
+	} <span style=color:#e6db74>`json:&#34;season&#34;`</span>
+	<span style=color:#a6e22e>Standings</span> []<span style=color:#a6e22e>Standing</span> <span style=color:#e6db74>`json:&#34;standings&#34;`</span>
+}
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Standing</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>Stage</span>  <span style=color:#66d9ef>string</span>  <span style=color:#e6db74>`json:&#34;stage&#34;`</span>
+	<span style=color:#a6e22e>Type</span>   <span style=color:#66d9ef>string</span>  <span style=color:#e6db74>`json:&#34;type&#34;`</span>
+	<span style=color:#a6e22e>Group</span>  <span style=color:#66d9ef>string</span>  <span style=color:#e6db74>`json:&#34;group&#34;`</span>
+	<span style=color:#a6e22e>Tables</span> []<span style=color:#a6e22e>Table</span> <span style=color:#e6db74>`json:&#34;table&#34;`</span>
+}
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Table</span> <span style=color:#66d9ef>struct</span> {
+	<span style=color:#a6e22e>Position</span> <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;position&#34;`</span>
+	<span style=color:#a6e22e>Team</span>     <span style=color:#66d9ef>struct</span> {
+		<span style=color:#a6e22e>Name</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>`json:&#34;name&#34;`</span>
+	} <span style=color:#e6db74>`json:&#34;team&#34;`</span>
+	<span style=color:#a6e22e>PlayedGames</span>    <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;playedGames&#34;`</span>
+	<span style=color:#a6e22e>Won</span>            <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;won&#34;`</span>
+	<span style=color:#a6e22e>Draw</span>           <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;draw&#34;`</span>
+	<span style=color:#a6e22e>Lost</span>           <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;lost&#34;`</span>
+	<span style=color:#a6e22e>Points</span>         <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;points&#34;`</span>
+	<span style=color:#a6e22e>GoalsFor</span>       <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;goalsFor&#34;`</span>
+	<span style=color:#a6e22e>GoalsAgainst</span>   <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;goalsAgainst&#34;`</span>
+	<span style=color:#a6e22e>GoalDifference</span> <span style=color:#66d9ef>int</span> <span style=color:#e6db74>`json:&#34;goalDifference&#34;`</span>
+}
+</code></pre></div><h2 id=get-json-data-from-the-api>Get JSON data from the API:<a hidden class=anchor aria-hidden=true href=#get-json-data-from-the-api>#</a></h2>
+<p><code>GetData</code> function returns a slice of byte. It does the following tasks:</p>
+<ul>
+<li>Makes an HTTP GET request;</li>
+<li>Sets the <code>“X-Auth-Token”</code> in request header;</li>
+<li>Sets up an HTTP Client that makes an HTTP request and returns an HTTP response, following the auth-token as configured.</li>
+<li>Reads HTTP response body that contains JSON data and converts it to a <code>[]byte</code>.</li>
+</ul>
+<p>The <code>[]byte</code> returned can be used to parse JSON encoded data into any struct type using <code>[json.Unmarshal](https://golang.org/pkg/encoding/json/#Unmarshal)</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>GetData</span>(<span style=color:#a6e22e>url</span>, <span style=color:#a6e22e>apiKey</span> <span style=color:#66d9ef>string</span>) []<span style=color:#66d9ef>byte</span> {
+	<span style=color:#a6e22e>request</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>NewRequest</span>(<span style=color:#e6db74>&#34;GET&#34;</span>, <span style=color:#a6e22e>url</span>, <span style=color:#66d9ef>nil</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		panic(<span style=color:#a6e22e>err</span>)
+	}
+
+	<span style=color:#a6e22e>request</span>.<span style=color:#a6e22e>Header</span>.<span style=color:#a6e22e>Set</span>(<span style=color:#e6db74>&#34;X-Auth-Token&#34;</span>, <span style=color:#a6e22e>apiKey</span>)
+
+	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>client</span> = <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>Client</span>{}
+	<span style=color:#a6e22e>response</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>Do</span>(<span style=color:#a6e22e>request</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		panic(<span style=color:#a6e22e>err</span>)
+	}
+	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>Body</span>.<span style=color:#a6e22e>Close</span>()
+
+	<span style=color:#a6e22e>jsonByte</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>ioutil</span>.<span style=color:#a6e22e>ReadAll</span>(<span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>Body</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		panic(<span style=color:#a6e22e>err</span>)
+	}
+
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>jsonByte</span>
+
+}
+</code></pre></div><h2 id=parse-json-into-the-struct>Parse JSON into the struct<a hidden class=anchor aria-hidden=true href=#parse-json-into-the-struct>#</a></h2>
+<p><strong>Parse JSON into</strong> <code>**Competitions**</code> <strong>struct:</strong><code>GetStandings</code> function takes the league <code>id</code> as an argument to build the final url and returns a <code>Competitions</code> struct that has the parsed JSON data in it.</p>
+<blockquote>
+<p><code>[json.Unamrshal](https://golang.org/pkg/encoding/json/#Unmarshal)</code> parses the JSON-encoded data that is in <code>[]byte</code> and stores the result in the struct whose address is given by <code>&s</code> .</p>
+</blockquote>
+<p><em>Note</em>: To make successful GET requests, set the variable <a href=https://www.football-data.org/>apikey</a>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>GetStandings</span>(<span style=color:#a6e22e>id</span> <span style=color:#66d9ef>string</span>) (<span style=color:#a6e22e>s</span> <span style=color:#a6e22e>Competitions</span>) {
+	<span style=color:#75715e>/* id can be
+</span><span style=color:#75715e>	BSA Brazilian Division One League
+</span><span style=color:#75715e>	PL Premiere League League
+</span><span style=color:#75715e>	ELC Championship League
+</span><span style=color:#75715e>	CL Champions League Cup
+</span><span style=color:#75715e>	EC European Championships Cup
+</span><span style=color:#75715e>	FL1 France League 1 League
+</span><span style=color:#75715e>	BL1 Bundesliga League
+</span><span style=color:#75715e>	SA Italy Serie A League
+</span><span style=color:#75715e>	DED Eredivise League
+</span><span style=color:#75715e>	PPL Portuguese Primera Division League
+</span><span style=color:#75715e>	PD Primera Division League
+</span><span style=color:#75715e>	WC World Cup */</span>
+  
+	<span style=color:#a6e22e>url</span> <span style=color:#f92672>:=</span> <span style=color:#e6db74>&#34;https://api.football-data.org/v2/competitions/&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>id</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/standings&#34;</span>
+	<span style=color:#a6e22e>apikey</span> <span style=color:#f92672>:=</span> <span style=color:#e6db74>&#34;SetYourAPIkeyHere&#34;</span>
+	<span style=color:#a6e22e>d</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>GetData</span>(<span style=color:#a6e22e>url</span>, <span style=color:#a6e22e>apikey</span>)
+	<span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>Unmarshal</span>(<span style=color:#a6e22e>d</span>, <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>s</span>)
+	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+		panic(<span style=color:#a6e22e>err</span>)
+	}
+	<span style=color:#75715e>//Uncomment this section to pretty print json on terminal
+</span><span style=color:#75715e></span>	<span style=color:#75715e>/* 	data, err := json.MarshalIndent(s, &#34;&#34;, &#34;  &#34;)
+</span><span style=color:#75715e>	   	if err != nil {
+</span><span style=color:#75715e>	   		panic(err)
+</span><span style=color:#75715e>	   	}
+</span><span style=color:#75715e>	   	fmt.Println(string(data)) */</span>
+
+	<span style=color:#66d9ef>return</span>
+}
+</code></pre></div><p><em>Voila!</em><br>
+Print the struct on terminal using the format verb <code>%+v</code> variant that will include the struct’s field names or use <a href=https://godoc.org/github.com/davecgh/go-spew/spew>package spew</a> that prints some additional information about the struct.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+  <span style=color:#75715e>//id = CL for Champions League Standings
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;%+v&#34;</span>, <span style=color:#a6e22e>GetStandings</span>(<span style=color:#e6db74>&#34;CL&#34;</span>))
+  <span style=color:#75715e>//Or using package spew 
+</span><span style=color:#75715e></span>	<span style=color:#a6e22e>spew</span>.<span style=color:#a6e22e>Dump</span>(<span style=color:#a6e22e>GetStandings</span>(<span style=color:#e6db74>&#34;CL&#34;</span>))
+}
+</code></pre></div>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://penthaapatel.github.io/tags/golang/>golang</a></li>
+<li><a href=https://penthaapatel.github.io/tags/json/>json</a></li>
+</ul>
+<nav class=paginav>
+<a class=prev href=https://penthaapatel.github.io/posts/contributing-to-open-source-go-projects-on-github-a-recipe-to-clone-forked-go-repositories/>
+<span class=title>« Prev Page</span>
+<br>
+<span>Contributing to Open Source Go projects on GitHub - A recipe to clone forked Go repositories</span>
+</a>
+</nav>
+<div class=share-buttons>
+<a>
+Share this post with your friends!
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share Golang-How to parse JSON data into a nested struct on twitter" href="https://twitter.com/intent/tweet/?text=Golang-How%20to%20parse%20JSON%20data%20into%20a%20nested%20struct&url=https%3a%2f%2fpenthaapatel.github.io%2fposts%2fgolang-how-to-parse-json-data-into-a-nested-struct%2f&hashtags=golang%2cjson"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM195.519 424.544c135.939.0 210.268-112.643 210.268-210.268.0-3.218.0-6.437-.153-9.502 14.406-10.421 26.973-23.448 36.935-38.314-13.18 5.824-27.433 9.809-42.452 11.648 15.326-9.196 26.973-23.602 32.49-40.92-14.252 8.429-30.038 14.56-46.896 17.931-13.487-14.406-32.644-23.295-53.946-23.295-40.767.0-73.87 33.104-73.87 73.87.0 5.824.613 11.494 1.992 16.858-61.456-3.065-115.862-32.49-152.337-77.241-6.284 10.881-9.962 23.601-9.962 37.088.0 25.594 13.027 48.276 32.95 61.456-12.107-.307-23.448-3.678-33.41-9.196v.92c0 35.862 25.441 65.594 59.311 72.49-6.13 1.686-12.72 2.606-19.464 2.606-4.751.0-9.348-.46-13.946-1.38 9.349 29.426 36.628 50.728 68.965 51.341-25.287 19.771-57.164 31.571-91.8 31.571-5.977.0-11.801-.306-17.625-1.073 32.337 21.15 71.264 33.41 112.95 33.41z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share Golang-How to parse JSON data into a nested struct on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fpenthaapatel.github.io%2fposts%2fgolang-how-to-parse-json-data-into-a-nested-struct%2f&title=Golang-How%20to%20parse%20JSON%20data%20into%20a%20nested%20struct&summary=Golang-How%20to%20parse%20JSON%20data%20into%20a%20nested%20struct&source=https%3a%2f%2fpenthaapatel.github.io%2fposts%2fgolang-how-to-parse-json-data-into-a-nested-struct%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share Golang-How to parse JSON data into a nested struct on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fpenthaapatel.github.io%2fposts%2fgolang-how-to-parse-json-data-into-a-nested-struct%2f&title=Golang-How%20to%20parse%20JSON%20data%20into%20a%20nested%20struct"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share Golang-How to parse JSON data into a nested struct on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fpenthaapatel.github.io%2fposts%2fgolang-how-to-parse-json-data-into-a-nested-struct%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share Golang-How to parse JSON data into a nested struct on whatsapp" href="https://api.whatsapp.com/send?text=Golang-How%20to%20parse%20JSON%20data%20into%20a%20nested%20struct%20-%20https%3a%2f%2fpenthaapatel.github.io%2fposts%2fgolang-how-to-parse-json-data-into-a-nested-struct%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share Golang-How to parse JSON data into a nested struct on telegram" href="https://telegram.me/share/url?text=Golang-How%20to%20parse%20JSON%20data%20into%20a%20nested%20struct&url=https%3a%2f%2fpenthaapatel.github.io%2fposts%2fgolang-how-to-parse-json-data-into-a-nested-struct%2f"><svg viewBox="2 2 28 28"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg>
+</a>
+</div>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2021 <a href=https://penthaapatel.github.io/>Penthaa Patel</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)">
+<button class=top-link id=top-link type=button accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</button>
+</a>
+<script>let menu=document.getElementById('menu');menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)},document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>

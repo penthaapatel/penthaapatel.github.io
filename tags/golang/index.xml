@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Penthaa Patel</title>
-    <link>https://penthaapatel.github.io/</link>
-    <description>Recent content on Penthaa Patel</description>
+    <title>golang on Penthaa Patel</title>
+    <link>https://penthaapatel.github.io/tags/golang/</link>
+    <description>Recent content in golang on Penthaa Patel</description>
     <image>
       <url>https://penthaapatel.github.io/papermod-cover.png</url>
       <link>https://penthaapatel.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>A concise guide to gRPC services for beginners</title>
-      <link>https://penthaapatel.github.io/posts/a-concise-guide-to-grpc-services-for-beginners/</link>
-      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://penthaapatel.github.io/posts/a-concise-guide-to-grpc-services-for-beginners/</guid>
-      <description>This post was originally published on my Medium profile : A concise guide to gRPC for beginners
- A series of simple, beginner friendly tutorials that explain the what, why and how of gRPC.
- Getting started - Understanding RPC What is RPC?  RPC aka Remote Procedure Calls - are just like functions. These functions are executed on some remote system and hence the name. It follows a request - response model.</description>
-    </item>
-    
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to implement a simple RPC service using Golang</title>
       <link>https://penthaapatel.github.io/posts/how-to-implement-a-simple-rpc-service-using-golang/</link>
@@ -63,29 +52,6 @@ Phew! It took me a while to figure out the entire process so I decided to write 
       <description>This post was originally published on my Medium profile : Golang-How to parse JSON data into a nested struct
 Say you are fetching data from a RESTful API using GET requests and want to store the JSON responses. One of the ways to achieve this is by parsing the JSON data into a Go struct. The following example will fetch data related to standings of a football league, UEFA Champions League in this case.</description>
     </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>https://penthaapatel.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://penthaapatel.github.io/about/</guid>
-      <description></description>
-    </item>
-    
-    
-    <item>
-      <title>Projects</title>
-      <link>https://penthaapatel.github.io/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://penthaapatel.github.io/projects/</guid>
-      <description>grpcblog Implementation of a gRPC service using Go. It uses protocol buffers to serialize data, which is a more efficient means of transporting data over the network as compared to text based serializations.
-Project link : github.com/penthaapatel/grpcblog
-goodfoodsAPI A HTTP RESTful API written in Go accessing MongoDB Database using MongoDB Go Driver. The API supports CRUD - Create, Read, Update, Delete operations using the API endpoints.
-Project link : github.com/penthaapatel/goodfoodsAPI</description>
-    </item>
-    
     
   </channel>
 </rss>

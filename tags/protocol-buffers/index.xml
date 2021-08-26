@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>protocol buffers on Penthaa Patel</title>
+    <link>https://penthaapatel.github.io/tags/protocol-buffers/</link>
+    <description>Recent content in protocol buffers on Penthaa Patel</description>
+    <image>
+      <url>https://penthaapatel.github.io/papermod-cover.png</url>
+      <link>https://penthaapatel.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/tags/protocol-buffers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A concise guide to gRPC services for beginners</title>
+      <link>https://penthaapatel.github.io/posts/a-concise-guide-to-grpc-services-for-beginners/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/posts/a-concise-guide-to-grpc-services-for-beginners/</guid>
+      <description>This post was originally published on my Medium profile : A concise guide to gRPC for beginners
+ A series of simple, beginner friendly tutorials that explain the what, why and how of gRPC.
+ Getting started - Understanding RPC What is RPC?  RPC aka Remote Procedure Calls - are just like functions. These functions are executed on some remote system and hence the name. It follows a request - response model.</description>
+    </item>
+    
+    <item>
+      <title>How to implement a simple RPC service using Golang</title>
+      <link>https://penthaapatel.github.io/posts/how-to-implement-a-simple-rpc-service-using-golang/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/posts/how-to-implement-a-simple-rpc-service-using-golang/</guid>
+      <description>This post was originally published on my Medium profile : How to implement a simple gRPC service using Golang
+If you want a general introduction to RPC you might want to check out my previous article in this series - A concise guide to gRPC for beginners
+The implemented code can be found on my GitHub Repository : Link to GitHub repository
+Before you begin  Install Golang Install proto compilers  Workflow  Define protocol - Write .</description>
+    </item>
+    
+  </channel>
+</rss>
