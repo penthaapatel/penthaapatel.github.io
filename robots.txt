@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://penthaapatel.github.io/sitemap.xml
