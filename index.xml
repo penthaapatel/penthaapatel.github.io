@@ -70,7 +70,9 @@ Say you are fetching data from a RESTful API using GET requests and want to stor
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://penthaapatel.github.io/about/</guid>
-      <description></description>
+      <description>Hi there! 👋
+I&amp;rsquo;m an aspiring software developer from India 🇮🇳 and I recently graduated from IIIT Bh with a Bachelor&amp;rsquo;s in Computer Science and Engineering.
+I code mostly using Go. My interests include playing around with Go code that implement modern day Microservices using RPC protocol. I also have a fair knowledge on implementation of REST APIs. I have developed individual projects on these topics which can be found on my GitHub profile.</description>
     </item>
     
     
