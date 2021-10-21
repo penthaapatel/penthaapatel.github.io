@@ -71,8 +71,8 @@ Say you are fetching data from a RESTful API using GET requests and want to stor
       
       <guid>https://penthaapatel.github.io/about/</guid>
       <description>Hi there! 👋
-I&amp;rsquo;m an aspiring software developer from India 🇮🇳 and I recently graduated from IIIT Bh with a Bachelor&amp;rsquo;s in Computer Science and Engineering.
-I code mostly using Go. My interests include playing around with Go code that implement modern day Microservices using RPC protocol. I also have a fair knowledge on implementation of REST APIs. I have developed individual projects on these topics which can be found on my GitHub profile.</description>
+I&amp;rsquo;m an aspiring software developer from India 🇮🇳 I recently graduated from IIIT Bh with a Bachelor&amp;rsquo;s in Computer Science and Engineering and I am open to entry-level programming roles right now.
+I code mostly using Go. I have developed individual projects that implement REST APIs, gRPC protocols. To view these projects and my other Open Source contributions to various repositories, feel free to visit my GitHub profile.</description>
     </item>
     
     
