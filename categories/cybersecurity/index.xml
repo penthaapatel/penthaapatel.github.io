@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>cybersecurity on Penthaa Patel</title>
+    <link>https://penthaapatel.github.io/categories/cybersecurity/</link>
+    <description>Recent content in cybersecurity on Penthaa Patel</description>
+    <image>
+      <title>Penthaa Patel</title>
+      <url>https://penthaapatel.github.io/papermod-cover.png</url>
+      <link>https://penthaapatel.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/categories/cybersecurity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>XML External Entity - XXE Attack</title>
+      <link>https://penthaapatel.github.io/posts/xxe/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/posts/xxe/</guid>
+      <description>XXE is a web-based vulnerability that enables an adversary to interfere with XML data processes in a web application. An XXE attack can be carried out by exploiting the way in which XML parses data.
+An XXE attack can lead to - denial of service (DoS), server-side request forgery (SSRF), local file inclusion (LFI), directory traversal, remote code execution (RCE), network port scanning.
+There are two types of XXE attacks:</description>
+    </item>
+    
+  </channel>
+</rss>

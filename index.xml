@@ -5,11 +5,24 @@
     <link>https://penthaapatel.github.io/</link>
     <description>Recent content on Penthaa Patel</description>
     <image>
+      <title>Penthaa Patel</title>
       <url>https://penthaapatel.github.io/papermod-cover.png</url>
       <link>https://penthaapatel.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>XML External Entity - XXE Attack</title>
+      <link>https://penthaapatel.github.io/posts/xxe/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/posts/xxe/</guid>
+      <description>XXE is a web-based vulnerability that enables an adversary to interfere with XML data processes in a web application. An XXE attack can be carried out by exploiting the way in which XML parses data.
+An XXE attack can lead to - denial of service (DoS), server-side request forgery (SSRF), local file inclusion (LFI), directory traversal, remote code execution (RCE), network port scanning.
+There are two types of XXE attacks:</description>
+    </item>
+    
     <item>
       <title>A concise guide to gRPC services for beginners</title>
       <link>https://penthaapatel.github.io/posts/a-concise-guide-to-grpc-services-for-beginners/</link>
@@ -17,8 +30,8 @@
       
       <guid>https://penthaapatel.github.io/posts/a-concise-guide-to-grpc-services-for-beginners/</guid>
       <description>This post was originally published on my Medium profile : A concise guide to gRPC for beginners
- A series of simple, beginner friendly tutorials that explain the what, why and how of gRPC.
- Getting started - Understanding RPC What is RPC?  RPC aka Remote Procedure Calls - are just like functions. These functions are executed on some remote system and hence the name. It follows a request - response model.</description>
+A series of simple, beginner friendly tutorials that explain the what, why and how of gRPC.
+Getting started - Understanding RPC What is RPC? RPC aka Remote Procedure Calls - are just like functions. These functions are executed on some remote system and hence the name. It follows a request - response model. A request is initiated from the client - this request is a function call with certain parameters and then, the server returns a response.</description>
     </item>
     
     <item>
@@ -30,7 +43,7 @@
       <description>This post was originally published on my Medium profile : How to implement a simple gRPC service using Golang
 If you want a general introduction to RPC you might want to check out my previous article in this series - A concise guide to gRPC for beginners
 The implemented code can be found on my GitHub Repository : Link to GitHub repository
-Before you begin  Install Golang Install proto compilers  Workflow  Define protocol - Write .</description>
+Before you begin Install Golang Install proto compilers Workflow Define protocol - Write .</description>
     </item>
     
     <item>
@@ -70,8 +83,10 @@ Say you are fetching data from a RESTful API using GET requests and want to stor
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://penthaapatel.github.io/about/</guid>
-      <description>Hi there! 👋 I&amp;rsquo;m an aspiring software developer from India 🇮🇳 I graduated from IIIT Bh with a Bachelor&amp;rsquo;s in Computer Science and Engineering and I am actively looking for entry level software developer roles right now.
-I code mostly using Go. I have developed individual projects that implement REST APIs, gRPC protocols. To view these projects and my other Open Source contributions to various repositories, do visit my GitHub profile.</description>
+      <description>Hi there! 👋 I&amp;rsquo;m a software developer from India 🇮🇳 with a keen interest in Infosec. I graduated from IIIT Bh with a Bachelor&amp;rsquo;s in Computer Science and Engineering.
+I code mostly using Go. I have developed individual projects that implement REST APIs, gRPC protocols. To view these projects and my other Open Source contributions to various repositories, do visit my GitHub profile.
+Some key Open Source Contributions:
+Mattermost Made multiple contributions working on the technical task of migrating the mattermost-server code base from using gorp as a sql library to using sqlx - Link to merged pull requests.</description>
     </item>
     
     

@@ -5,10 +5,12 @@
     <link>https://penthaapatel.github.io/tags/golang/</link>
     <description>Recent content in golang on Penthaa Patel</description>
     <image>
+      <title>Penthaa Patel</title>
       <url>https://penthaapatel.github.io/papermod-cover.png</url>
       <link>https://penthaapatel.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to implement a simple RPC service using Golang</title>
@@ -19,7 +21,7 @@
       <description>This post was originally published on my Medium profile : How to implement a simple gRPC service using Golang
 If you want a general introduction to RPC you might want to check out my previous article in this series - A concise guide to gRPC for beginners
 The implemented code can be found on my GitHub Repository : Link to GitHub repository
-Before you begin  Install Golang Install proto compilers  Workflow  Define protocol - Write .</description>
+Before you begin Install Golang Install proto compilers Workflow Define protocol - Write .</description>
     </item>
     
     <item>

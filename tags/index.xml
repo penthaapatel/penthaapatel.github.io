@@ -5,11 +5,49 @@
     <link>https://penthaapatel.github.io/tags/</link>
     <description>Recent content in Tags on Penthaa Patel</description>
     <image>
+      <title>Penthaa Patel</title>
       <url>https://penthaapatel.github.io/papermod-cover.png</url>
       <link>https://penthaapatel.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cybersecurity</title>
+      <link>https://penthaapatel.github.io/tags/cybersecurity/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/tags/cybersecurity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>infosec</title>
+      <link>https://penthaapatel.github.io/tags/infosec/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/tags/infosec/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xml</title>
+      <link>https://penthaapatel.github.io/tags/xml/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/tags/xml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xxe</title>
+      <link>https://penthaapatel.github.io/tags/xxe/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://penthaapatel.github.io/tags/xxe/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>golang</title>
       <link>https://penthaapatel.github.io/tags/golang/</link>

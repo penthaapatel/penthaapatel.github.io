@@ -5,10 +5,12 @@
     <link>https://penthaapatel.github.io/tags/grpc/</link>
     <description>Recent content in grpc on Penthaa Patel</description>
     <image>
+      <title>Penthaa Patel</title>
       <url>https://penthaapatel.github.io/papermod-cover.png</url>
       <link>https://penthaapatel.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://penthaapatel.github.io/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A concise guide to gRPC services for beginners</title>
@@ -17,8 +19,8 @@
       
       <guid>https://penthaapatel.github.io/posts/a-concise-guide-to-grpc-services-for-beginners/</guid>
       <description>This post was originally published on my Medium profile : A concise guide to gRPC for beginners
- A series of simple, beginner friendly tutorials that explain the what, why and how of gRPC.
- Getting started - Understanding RPC What is RPC?  RPC aka Remote Procedure Calls - are just like functions. These functions are executed on some remote system and hence the name. It follows a request - response model.</description>
+A series of simple, beginner friendly tutorials that explain the what, why and how of gRPC.
+Getting started - Understanding RPC What is RPC? RPC aka Remote Procedure Calls - are just like functions. These functions are executed on some remote system and hence the name. It follows a request - response model. A request is initiated from the client - this request is a function call with certain parameters and then, the server returns a response.</description>
     </item>
     
     <item>
@@ -30,7 +32,7 @@
       <description>This post was originally published on my Medium profile : How to implement a simple gRPC service using Golang
 If you want a general introduction to RPC you might want to check out my previous article in this series - A concise guide to gRPC for beginners
 The implemented code can be found on my GitHub Repository : Link to GitHub repository
-Before you begin  Install Golang Install proto compilers  Workflow  Define protocol - Write .</description>
+Before you begin Install Golang Install proto compilers Workflow Define protocol - Write .</description>
     </item>
     
   </channel>
